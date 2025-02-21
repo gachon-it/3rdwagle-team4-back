@@ -1,11 +1,13 @@
-package com.habitmon.domain.habit.domain.api;
+package com.habitmon.domain.habit.api;
 
 import com.habitmon.common.SuccessCode;
 import com.habitmon.common.response.ApiResponse;
-import com.habitmon.domain.habit.domain.api.dto.request.HabitCreateRequest;
-import com.habitmon.domain.habit.domain.api.dto.response.HabitCreateResponse;
-import com.habitmon.domain.habit.domain.api.dto.response.HabitListResponse;
-import com.habitmon.domain.habit.domain.service.HabitService;
+import com.habitmon.domain.habit.api.dto.request.HabitCreateRequest;
+import com.habitmon.domain.habit.api.dto.request.HabitInfoRequest;
+import com.habitmon.domain.habit.api.dto.response.HabitCreateResponse;
+import com.habitmon.domain.habit.api.dto.response.HabitInfoResponse;
+import com.habitmon.domain.habit.api.dto.response.HabitListResponse;
+import com.habitmon.domain.habit.service.HabitService;
 import com.habitmon.global.auth.AuthDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -30,6 +32,14 @@ public class HabitController {
             @AuthenticationPrincipal AuthDetails authDetails){
         long memberId = authDetails.id();
         HabitListResponse response = habitService.getHabitList(memberId);
+
+        return ApiResponse.success(SuccessCode.REQUEST_OK, response);
+    }
+
+    @GetMapping("/info")
+    public ApiResponse<HabitInfoResponse> habitInfo(
+            @RequestBody HabitInfoRequest request){
+        HabitInfoResponse response = habitService.getHabitInfo(request);
 
         return ApiResponse.success(SuccessCode.REQUEST_OK, response);
     }
