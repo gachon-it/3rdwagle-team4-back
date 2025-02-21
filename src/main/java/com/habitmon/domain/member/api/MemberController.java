@@ -26,17 +26,9 @@ public class MemberController {
         return ApiResponse.success(SuccessCode.REQUEST_OK, response);
     }
 
-    @PostMapping("/is-duplicated-email")
-    public ApiResponse<MemberEmailCheckResponse> isDuplicatedEmail(
-            @RequestBody EmailDuplicateCheckRequest request){
-        MemberEmailCheckResponse response = memberService.isDuplicatedEmail(request);
-        return ApiResponse.success(SuccessCode.REQUEST_OK, response);
-    }
-
-    @GetMapping("/info")
+    @GetMapping("/info/{memberId")
     public ApiResponse<MemberInfoResponse> memberInfo(
-            @AuthenticationPrincipal AuthDetails authDetails) {
-        long memberId = authDetails.id();
+            @RequestParam Long memberId) {
         MemberInfoResponse response = memberService.memberInfo(memberId);
 
         return ApiResponse.success(SuccessCode.REQUEST_OK, response);

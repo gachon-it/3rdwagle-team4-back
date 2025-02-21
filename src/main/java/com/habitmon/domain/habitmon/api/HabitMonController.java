@@ -20,18 +20,15 @@ public class HabitMonController {
 
     @PostMapping("/create")
     public ApiResponse<HabitMonCreateResponse> createHabitMon(
-            @AuthenticationPrincipal AuthDetails authDetails,
             @RequestBody HabitMonCreateRequest request) {
-        long memberId = authDetails.id();
-        HabitMonCreateResponse response = habitMonService.createHabitMon(memberId, request);
+        HabitMonCreateResponse response = habitMonService.createHabitMon(request.memberId(), request);
 
         return ApiResponse.success(SuccessCode.REQUEST_OK, response);
     }
 
-    @GetMapping("/info")
+    @GetMapping("{memberId}/info")
     public ApiResponse<HabitMonInfoResponse> habitMonInfo(
-            @AuthenticationPrincipal AuthDetails authDetails) {
-        long memberId = authDetails.id();
+            @PathVariable Long memberId) {
         HabitMonInfoResponse response = habitMonService.findByHabitMonId(memberId);
         return ApiResponse.success(SuccessCode.REQUEST_OK, response);
     }

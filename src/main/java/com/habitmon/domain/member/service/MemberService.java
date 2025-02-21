@@ -19,21 +19,12 @@ public class MemberService {
     public MemberRegisterResponse registerMember(MemberRegisterRequest request) {
         Member member = memberRepository.save(
                 Member.builder()
-                        .email(request.email())
-                        .password(request.password())
                         .nickname(request.nickname())
                         .gender(request.gender())
-                        .job(request.job())
                         .build()
         );
 
-        return new MemberRegisterResponse(member.getId(),"afdsf", "asgsbf");
-    }
-
-    public MemberEmailCheckResponse isDuplicatedEmail(EmailDuplicateCheckRequest request){
-        Boolean doesMemberExistsByEmail= memberRepository.existsByEmail(request.email());
-
-        return new MemberEmailCheckResponse(doesMemberExistsByEmail);
+        return new MemberRegisterResponse(member.getId());
     }
 
     public MemberInfoResponse memberInfo(long memberId){
@@ -42,11 +33,9 @@ public class MemberService {
 
         return new MemberInfoResponse(
                 member.getId(),
-                member.getEmail(),
                 member.getNickname(),
                 member.getAgeRange(),
-                member.getGender(),
-                member.getJob()
+                member.getGender()
         );
     }
 }

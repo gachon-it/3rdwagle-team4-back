@@ -3,14 +3,11 @@ package com.habitmon.domain.habit.api;
 import com.habitmon.common.SuccessCode;
 import com.habitmon.common.response.ApiResponse;
 import com.habitmon.domain.habit.api.dto.request.HabitCreateRequest;
-import com.habitmon.domain.habit.api.dto.request.HabitInfoRequest;
 import com.habitmon.domain.habit.api.dto.response.HabitCreateResponse;
 import com.habitmon.domain.habit.api.dto.response.HabitInfoResponse;
 import com.habitmon.domain.habit.api.dto.response.HabitListResponse;
 import com.habitmon.domain.habit.service.HabitService;
-import com.habitmon.global.auth.AuthDetails;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,19 +24,18 @@ public class HabitController {
         return ApiResponse.success(SuccessCode.REQUEST_OK, response);
     }
 
-    @GetMapping("/list")
+    @GetMapping("{memberId}/list")
     public ApiResponse<HabitListResponse> habitList(
-            @AuthenticationPrincipal AuthDetails authDetails){
-        long memberId = authDetails.id();
+            @PathVariable Long memberId){
         HabitListResponse response = habitService.getHabitList(memberId);
 
         return ApiResponse.success(SuccessCode.REQUEST_OK, response);
     }
 
-    @GetMapping("/info")
+    @GetMapping("{habitId}/info")
     public ApiResponse<HabitInfoResponse> habitInfo(
-            @RequestBody HabitInfoRequest request){
-        HabitInfoResponse response = habitService.getHabitInfo(request);
+            @PathVariable Long habitId){
+        HabitInfoResponse response = habitService.getHabitInfo(habitId);
 
         return ApiResponse.success(SuccessCode.REQUEST_OK, response);
     }
