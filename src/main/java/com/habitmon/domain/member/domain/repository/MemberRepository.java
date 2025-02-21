@@ -1,5 +1,6 @@
 package com.habitmon.domain.member.domain.repository;
 
+import com.habitmon.domain.member.api.dto.response.MemberInfoResponse;
 import com.habitmon.domain.member.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
