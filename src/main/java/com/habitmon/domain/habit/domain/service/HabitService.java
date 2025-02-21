@@ -3,9 +3,12 @@ package com.habitmon.domain.habit.domain.service;
 import com.habitmon.domain.habit.domain.Habit;
 import com.habitmon.domain.habit.domain.api.dto.request.HabitCreateRequest;
 import com.habitmon.domain.habit.domain.api.dto.response.HabitCreateResponse;
+import com.habitmon.domain.habit.domain.api.dto.response.HabitListResponse;
 import com.habitmon.domain.habit.domain.repository.HabitRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,5 +29,10 @@ public class HabitService {
         );
 
              return new HabitCreateResponse(habit.getId());
+    }
+
+    public HabitListResponse getHabitList(Long memberId){
+        List<HabitListResponse.HabitResponse> list = habitRepository.findIdAndNameByMemberId(memberId);
+        return new HabitListResponse(list);
     }
 }
