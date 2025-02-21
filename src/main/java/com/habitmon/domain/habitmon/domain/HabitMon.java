@@ -1,7 +1,9 @@
 package com.habitmon.domain.habitmon.domain;
 
+import com.habitmon.domain.member.domain.Member;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -16,7 +18,8 @@ public class HabitMon {
     private Long id;
 
     @NotNull
-    private Long memberId;
+    @OneToOne
+    private Member member;
 
     @NotNull
     private String name;
@@ -28,10 +31,10 @@ public class HabitMon {
     public HabitMon(
             final String name,
             final String age,
-            final Long memberId
+            final Member member
     ) {
         this.name = name;
         this.age = age;
-        this.memberId = memberId;
+        this.member = member;
     }
 }

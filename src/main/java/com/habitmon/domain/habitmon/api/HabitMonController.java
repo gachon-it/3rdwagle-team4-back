@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/habitMon")
+@RequestMapping("/habitmon")
 public class HabitMonController {
 
     private final HabitMonService habitMonService;
