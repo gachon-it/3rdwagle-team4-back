@@ -30,16 +30,26 @@ public class Habit {
     @NotNull
     private Boolean complete;
 
+    @NotNull
+    private String period;
+
+    @NotNull
+    private Integer count;
+
     @Builder
     public Habit(
             final String name,
             final LocalDate startDate,
             final LocalDate endDate,
-            final Boolean complete
+            final Boolean complete,
+            final String period,
+            final Integer count
     ) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
         this.complete = complete;
+        this.period = period;
+        this.count = count;
     }
 }
