@@ -1,4 +1,4 @@
-package com.habitmon.domain.habit.domain.api.dto.response;
+package com.habitmon.domain.habit.api.dto.response;
 
 import java.util.List;
 
