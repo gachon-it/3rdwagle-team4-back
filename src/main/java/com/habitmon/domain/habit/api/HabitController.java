@@ -2,6 +2,7 @@ package com.habitmon.domain.habit.api;
 
 import com.habitmon.common.SuccessCode;
 import com.habitmon.common.response.ApiResponse;
+import com.habitmon.domain.habit.api.dto.request.HabitCountRequest;
 import com.habitmon.domain.habit.api.dto.request.HabitCreateRequest;
 import com.habitmon.domain.habit.api.dto.response.HabitCreateResponse;
 import com.habitmon.domain.habit.api.dto.response.HabitInfoResponse;
@@ -39,4 +40,16 @@ public class HabitController {
 
         return ApiResponse.success(SuccessCode.REQUEST_OK, response);
     }
+
+    @PatchMapping("/checking")
+    public ApiResponse<Void> habitChecking(
+            @RequestBody HabitCountRequest request){
+        habitService.updateHabit(request);
+
+        return ApiResponse.success(SuccessCode.REQUEST_OK);
+    }
+
+
+
+
 }

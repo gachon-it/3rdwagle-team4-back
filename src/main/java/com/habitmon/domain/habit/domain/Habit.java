@@ -38,7 +38,7 @@ public class Habit {
     @NotNull
     private Integer count;
 
-    @Builder
+    @Builder(toBuilder = true)
     public Habit(
             final Member member,
             final String name,
