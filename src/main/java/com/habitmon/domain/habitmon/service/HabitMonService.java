@@ -8,7 +8,6 @@ import com.habitmon.domain.habitmon.domain.repository.HabitMonRepository;
 import com.habitmon.domain.member.domain.Member;
 import com.habitmon.domain.member.domain.repository.MemberRepository;
 import com.habitmon.domain.member.exception.MemberNotFoundException;
-import com.habitmon.domain.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
