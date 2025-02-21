@@ -27,8 +27,7 @@ public class HabitService {
                         .startDate(request.startDate())
                         .endDate(request.endDate())
                         .complete(false)
-                        .count(request.count())
-                        .period(request.period())
+                        .count(0)
                         .build()
         );
 
@@ -53,7 +52,6 @@ public class HabitService {
                 habit.getStartDate(),
                 habit.getEndDate(),
                 habit.getComplete(),
-                habit.getPeriod(),
                 habit.getCount()
                 );
     }

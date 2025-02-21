@@ -10,7 +10,6 @@ public record HabitInfoResponse(
     LocalDate startDate,
     LocalDate endDate,
     Boolean complete,
-    String period,
     Integer count
 ) {
 }
