@@ -1,5 +1,6 @@
 package com.habitmon.domain.member.service;
 
+import com.habitmon.domain.member.api.dto.request.EmailDuplicateCheckRequest;
 import com.habitmon.domain.member.api.dto.request.MemberRegisterRequest;
 import com.habitmon.domain.member.api.dto.response.MemberEmailCheckResponse;
 import com.habitmon.domain.member.api.dto.response.MemberRegisterResponse;
@@ -27,7 +28,7 @@ public class MemberService {
         return new MemberRegisterResponse(member.getId(),"afdsf", "asgsbf");
     }
 
-    public MemberEmailCheckResponse isDuplicatedEmail(MemberRegisterRequest request){
+    public MemberEmailCheckResponse isDuplicatedEmail(EmailDuplicateCheckRequest request){
         Boolean doesMemberExistsByEmail= memberRepository.existsByEmail(request.email());
 
         return new MemberEmailCheckResponse(doesMemberExistsByEmail);

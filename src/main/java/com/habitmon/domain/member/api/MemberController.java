@@ -2,12 +2,12 @@ package com.habitmon.domain.member.api;
 
 import com.habitmon.common.SuccessCode;
 import com.habitmon.common.response.ApiResponse;
+import com.habitmon.domain.member.api.dto.request.EmailDuplicateCheckRequest;
 import com.habitmon.domain.member.api.dto.request.MemberRegisterRequest;
 import com.habitmon.domain.member.api.dto.response.MemberEmailCheckResponse;
 import com.habitmon.domain.member.api.dto.response.MemberRegisterResponse;
 import com.habitmon.domain.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.objenesis.ObjenesisHelper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +28,7 @@ public class MemberController {
 
     @PostMapping("/is-duplicated-email")
     public ApiResponse<MemberEmailCheckResponse> isDuplicatedEmail(
-            @RequestBody MemberRegisterRequest request){
+            @RequestBody EmailDuplicateCheckRequest request){
         MemberEmailCheckResponse response = memberService.isDuplicatedEmail(request);
         return ApiResponse.success(SuccessCode.REQUEST_OK, response);
     }
