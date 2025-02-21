@@ -2,15 +2,14 @@ package com.habitmon.domain.habit.service;
 
 import com.habitmon.domain.habit.domain.Habit;
 import com.habitmon.domain.habit.api.dto.request.HabitCreateRequest;
-import com.habitmon.domain.habit.api.dto.request.HabitInfoRequest;
 import com.habitmon.domain.habit.api.dto.response.HabitCreateResponse;
 import com.habitmon.domain.habit.api.dto.response.HabitInfoResponse;
 import com.habitmon.domain.habit.api.dto.response.HabitListResponse;
 import com.habitmon.domain.habit.domain.repository.HabitRepository;
-import com.habitmon.domain.member.exception.MemberNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.habitmon.domain.habit.exception.HabitNotFoundException;
+
 import java.util.List;
 
 @Service
@@ -45,14 +44,15 @@ public class HabitService {
         );
     }
 
-    public HabitInfoResponse getHabitInfo(HabitInfoRequest request) {
-        Habit habit = habitRepository.findById(request.id()).orElse(null);
+    public HabitInfoResponse getHabitInfo(Long habitId) {
+        Habit habit = habitRepository.findById(habitId)
+                .orElseThrow(HabitNotFoundException::new);
         return new HabitInfoResponse(
                 habit.getName(),
                 habit.getStartDate(),
                 habit.getEndDate(),
                 habit.getComplete(),
                 habit.getCount()
-                );
+        );
     }
 }

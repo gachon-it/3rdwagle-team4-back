@@ -29,7 +29,7 @@ public class HabitMonService {
                 HabitMon.builder()
                         .member(member)
                         .name(request.name())
-                        .age(BABY.value())
+                        .age(BABY.getValue())
                         .build()
         );
 

@@ -1,7 +1,7 @@
 package com.habitmon.domain.habit.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.habitmon.domain.member.domain.Member;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -16,7 +16,12 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Habit {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
+    @ManyToOne
+    private Member member;
 
     @NotNull
     private String name;
@@ -35,12 +40,14 @@ public class Habit {
 
     @Builder
     public Habit(
+            final Member member,
             final String name,
             final LocalDate startDate,
             final LocalDate endDate,
             final Boolean complete,
             final Integer count
     ) {
+        this.member = member;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;

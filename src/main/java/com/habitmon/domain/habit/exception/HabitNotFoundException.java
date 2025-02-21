@@ -4,7 +4,7 @@ import com.habitmon.common.ErrorCode;
 import com.habitmon.common.exception.ServiceException;
 
 public class HabitNotFoundException extends ServiceException {
-    public HabitNotFoundException(ErrorCode errorCode) {
+    public HabitNotFoundException() {
         super(ErrorCode.HABIT_NOT_FOUND);
     }
 }
