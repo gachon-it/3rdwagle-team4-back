@@ -25,6 +25,6 @@ public class HabitService {
                         .build()
         );
 
-             return new HabitCreateResponse(habit.getId(), "abc", "defg");
+             return new HabitCreateResponse(habit.getId());
     }
 }
