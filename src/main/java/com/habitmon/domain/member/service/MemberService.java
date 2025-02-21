@@ -7,6 +7,7 @@ import com.habitmon.domain.member.api.dto.response.MemberInfoResponse;
 import com.habitmon.domain.member.api.dto.response.MemberRegisterResponse;
 import com.habitmon.domain.member.domain.Member;
 import com.habitmon.domain.member.domain.repository.MemberRepository;
+import com.habitmon.domain.member.exception.MemberNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +37,16 @@ public class MemberService {
     }
 
     public MemberInfoResponse memberInfo(long memberId){
-       // Member member = memberRepository.findById(memberId).orElse(null);
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(MemberNotFoundException::new);
 
-        return memberRepository.findMemberInfoById(memberId);
+        return new MemberInfoResponse(
+                member.getId(),
+                member.getEmail(),
+                member.getNickname(),
+                member.getAgeRange(),
+                member.getGender(),
+                member.getJob()
+        );
     }
 }

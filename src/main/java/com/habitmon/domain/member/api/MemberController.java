@@ -11,10 +11,7 @@ import com.habitmon.domain.member.service.MemberService;
 import com.habitmon.global.auth.AuthDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,7 +33,7 @@ public class MemberController {
         return ApiResponse.success(SuccessCode.REQUEST_OK, response);
     }
 
-    @PostMapping("/info")
+    @GetMapping("/info")
     public ApiResponse<MemberInfoResponse> memberInfo(
             @AuthenticationPrincipal AuthDetails authDetails) {
         long memberId = authDetails.id();
