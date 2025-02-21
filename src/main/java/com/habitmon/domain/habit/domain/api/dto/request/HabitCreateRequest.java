@@ -6,9 +6,8 @@ import java.time.LocalDate;
 
 public record HabitCreateRequest(
         String name,
-        LocalDate start_date,
-        LocalDate end_date,
-        boolean complete,
+        LocalDate startDate,
+        LocalDate endDate,
         String period,
         Integer count
 ) {

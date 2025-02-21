@@ -17,9 +17,9 @@ public class HabitService {
         Habit habit = habitRepository.save(
                 Habit.builder()
                         .name(request.name())
-                        .startDate(request.start_date())
-                        .endDate(request.end_date())
-                        .complete(request.complete())
+                        .startDate(request.startDate())
+                        .endDate(request.endDate())
+                        .complete(false)
                         .count(request.count())
                         .period(request.period())
                         .build()
