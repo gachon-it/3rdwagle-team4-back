@@ -6,6 +6,8 @@ import com.habitmon.domain.habitmon.api.dto.response.HabitMonCreateResponse;
 import com.habitmon.domain.habitmon.api.dto.response.HabitMonInfoResponse;
 import com.habitmon.domain.habitmon.domain.repository.HabitMonRepository;
 import com.habitmon.domain.member.domain.Member;
+import com.habitmon.domain.member.domain.repository.MemberRepository;
+import com.habitmon.domain.member.exception.MemberNotFoundException;
 import com.habitmon.domain.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,11 +20,12 @@ import static com.habitmon.domain.habitmon.domain.Age.BABY;
 public class HabitMonService {
     private final HabitMonRepository habitMonRepository;
 
-    private final MemberService memberService;
+    private final MemberRepository memberRepository;
 
     @Transactional
     public HabitMonCreateResponse createHabitMon(Long memberId, HabitMonCreateRequest request){
-        Member member = memberService.getMemberById(memberId);
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(MemberNotFoundException::new);
         HabitMon habitmon = habitMonRepository.save(
                 HabitMon.builder()
                         .member(member)
