@@ -16,7 +16,7 @@ public class HabitService {
 
     private final HabitRepository habitRepository;
 
-    public HabitCreateResponse createHabit(HabitCreateRequest request){
+    public HabitCreateResponse createHabit(HabitCreateRequest request) {
         Habit habit = habitRepository.save(
                 Habit.builder()
                         .name(request.name())
@@ -28,11 +28,17 @@ public class HabitService {
                         .build()
         );
 
-             return new HabitCreateResponse(habit.getId());
+        return new HabitCreateResponse(habit.getId());
     }
 
-    public HabitListResponse getHabitList(Long memberId){
-        List<HabitListResponse.HabitResponse> list = habitRepository.findIdAndNameByMemberId(memberId);
-        return new HabitListResponse(list);
+    public HabitListResponse getHabitList(Long memberId) {
+        List<Habit> habits = habitRepository.findAllByMemberId(memberId);
+
+        return new HabitListResponse(
+                habits.stream().map(habit ->
+                                new HabitListResponse.HabitResponse(
+                                        habit.getId(), habit.getName()))
+                        .toList()
+        );
     }
 }
