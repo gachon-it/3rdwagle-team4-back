@@ -2,6 +2,7 @@ package com.habitmon.domain.habit.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -16,6 +17,10 @@ public class Cycle {
     private Long id;
 
     @NotNull
+    @OneToOne
+    private Habit habit;
+
+    @NotNull
     private String period;
 
     @NotNull
@@ -23,10 +28,12 @@ public class Cycle {
 
     @Builder
     public Cycle(
+            final Habit habit,
             final String period,
             final Integer count
     ) {
         this.period = period;
         this.count = count;
+        this.habit = habit;
     }
 }
