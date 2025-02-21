@@ -18,6 +18,7 @@ public class MemberService {
         Member member = memberRepository.save(
                 Member.builder()
                         .nickname(request.nickname())
+                        .ageRange(request.ageRange())
                         .gender(request.gender())
                         .build()
         );
