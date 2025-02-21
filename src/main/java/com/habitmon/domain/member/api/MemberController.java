@@ -13,14 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/member")
 public class MemberController {
     private final MemberService memberService;
-
 
     @PostMapping("/register")
     public ApiResponse<MemberRegisterResponse> registerMember(
@@ -35,6 +32,4 @@ public class MemberController {
         MemberEmailCheckResponse response = memberService.isDuplicatedEmail(request);
         return ApiResponse.success(SuccessCode.REQUEST_OK, response);
     }
-
-
 }

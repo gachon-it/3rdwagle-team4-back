@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class MemberService {
-
     private final MemberRepository memberRepository;
+
     public MemberRegisterResponse registerMember(MemberRegisterRequest request) {
         Member member = memberRepository.save(
                 Member.builder()
@@ -28,8 +28,8 @@ public class MemberService {
     }
 
     public MemberEmailCheckResponse isDuplicatedEmail(MemberRegisterRequest request){
-        Boolean exist= memberRepository.existsByEmail(request.email());
-        return exist == false? new MemberEmailCheckResponse("success", "success") : new MemberEmailCheckResponse("fail", "fail");
+        Boolean doesMemberExistsByEmail= memberRepository.existsByEmail(request.email());
 
+        return new MemberEmailCheckResponse(doesMemberExistsByEmail);
     }
 }
